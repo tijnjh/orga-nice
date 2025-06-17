@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { tryCatch } from "typecatch";
 
-const PROJECTS_DIR = process.env.PROJECTS_DIR ?? "/Users/tijn/projects/";
+const PROJECTS_DIR = process.env.PROJECTS_DIR ?? "/Users/tijn/projects/"; // change this
 
 if (!fs.existsSync(PROJECTS_DIR)) {
     console.error(
