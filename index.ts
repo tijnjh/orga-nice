@@ -38,15 +38,19 @@ for (const project of projects) {
 
     console.log(`removing all tags from: ${project}`);
     spawnSync(
-        ["tag", "--remove", `*`, projectPath],
+        ["tag", "--remove", `*`],
+        { cwd: projectPath },
     );
 
     console.log(`adding tag '${info.domain!}' to ${project}`);
     spawnSync(
-        ["tag", "--add", info.domain!, projectPath],
+        ["tag", "--add", info.domain!],
+        { cwd: projectPath },
     );
 
-    const sanitizedRepo = info.repo!.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+    const repoName = info.repo!.split("/").pop()!;
+    const sanitizedRepo = repoName.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+
     const newProjectPath = path.join(PROJECTS_DIR, sanitizedRepo);
 
     if (projectPath === newProjectPath) continue;
